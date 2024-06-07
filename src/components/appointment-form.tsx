@@ -6,7 +6,6 @@ import DatePicker from './date-picker'
 import SelectHour from './select-hour'
 import SelectService from './select-service'
 import { Input } from './ui/input'
-import { Button } from './ui/button'
 import AppointmentFormHeader from './appointment-form-header'
 import { Label } from './ui/label'
 
@@ -123,9 +122,9 @@ const AppointmentForm: React.FC = () => {
         )}
 
         <div className="flex w-full justify-center">
-          <Button disabled={isButtonDisabled} type="submit" className="w-36">
+          <button disabled={isButtonDisabled} type="submit" className="w-36">
             Agendar
-          </Button>
+          </button>
         </div>
       </form>
     </div>
