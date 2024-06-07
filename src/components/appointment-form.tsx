@@ -8,6 +8,7 @@ import SelectService from './select-service'
 import { Input } from './ui/input'
 import AppointmentFormHeader from './appointment-form-header'
 import { Label } from './ui/label'
+import { Button } from './ui/button'
 
 import { useDateStore } from '@/store/dateStore'
 import { useHourStore } from '@/store/hourStore'
@@ -16,6 +17,7 @@ import { useServiceStore } from '@/store/serviceStore'
 import { AppointmentDto } from '@/utils/types'
 import { useCreateAppointment } from '@/queries'
 import { formatMessage } from '@/utils/formatMessage'
+import { handlePhoneInput } from '@/lib/utils'
 
 const AppointmentSchema = z.object({
   name: z.string().min(2, 'Nome muito curto').max(50, 'Nome muito longo'),
@@ -95,6 +97,7 @@ const AppointmentForm: React.FC = () => {
             type="text"
             placeholder="Ex: (79) 99999-9999"
             {...register('phone')}
+            onInput={handlePhoneInput}
           />
           {errors.phone && (
             <span className="flex justify-center px-4 text-xs text-pink-700 md:text-sm">
@@ -122,9 +125,9 @@ const AppointmentForm: React.FC = () => {
         )}
 
         <div className="flex w-full justify-center">
-          <button disabled={isButtonDisabled} type="submit" className="w-36">
+          <Button disabled={isButtonDisabled} type="submit" className="w-36">
             Agendar
-          </button>
+          </Button>
         </div>
       </form>
     </div>
