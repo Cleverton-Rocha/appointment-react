@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Appointment, AppointmentDto, AppointmentList } from '../utils/types'
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://appointment-java.onrender.com',
 })
 
 export async function findAppointmentByDate(date: string | undefined) {
