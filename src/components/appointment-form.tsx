@@ -16,7 +16,6 @@ import { usePriceStore } from '@/store/priceStore'
 import { useServiceStore } from '@/store/serviceStore'
 import { AppointmentDto } from '@/utils/types'
 import { useCreateAppointment } from '@/queries'
-import { formatMessage } from '@/utils/formatMessage'
 import { handlePhoneInput } from '@/lib/utils'
 
 const AppointmentSchema = z.object({
@@ -58,11 +57,11 @@ const AppointmentForm: React.FC = () => {
       }
       createAppointment.mutate(appointmentdto)
 
-      if (createAppointment.isSuccess) {
-        const wppURL = import.meta.env.VITE_REACT_APP_API_URL
-        const message = formatMessage(appointmentdto)
-        window.location.href = `${wppURL}${message}`
-      }
+      // if (createAppointment.isSuccess) {
+      //   const wppURL = import.meta.env.VITE_REACT_APP_API_URL
+      //   const message = formatMessage(appointmentdto)
+      //   window.location.href = `${wppURL}${message}`
+      // }
     }
   }
 
