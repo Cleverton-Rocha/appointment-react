@@ -56,11 +56,11 @@ const AppointmentForm: React.FC = () => {
         price: price,
         observations: data.observations,
       }
-      createAppointment.mutate(appointmentdto)
-
-      if (createAppointment.isSuccess) {
-        sendMessage(appointmentdto)
-      }
+      createAppointment.mutate(appointmentdto, {
+        onSuccess: () => {
+          sendMessage(appointmentdto)
+        },
+      })
     }
   }
 
