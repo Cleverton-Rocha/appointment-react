@@ -1,6 +1,11 @@
 import axios from 'axios'
 
-import { Appointment, AppointmentDto, AppointmentList } from '../utils/types'
+import {
+  Appointment,
+  AppointmentDto,
+  AppointmentList,
+  CancelAppointmentDto,
+} from '../utils/types'
 
 const api = axios.create({
   baseURL: 'https://appointment-ts.vercel.app',
@@ -16,4 +21,13 @@ export async function createAppointment(appointment: AppointmentDto) {
   const { data } = await api.post<Appointment>('/appointments', appointment)
 
   return data
+}
+
+export async function cancelAppointment(
+  cancelAppointment: CancelAppointmentDto,
+) {
+  await api.post(
+    `/appointments/${cancelAppointment.date}/${cancelAppointment.time}`,
+    cancelAppointment.cancelToken,
+  )
 }
