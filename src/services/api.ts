@@ -28,6 +28,6 @@ export async function cancelAppointment(
 ) {
   await api.post(
     `/appointments/${cancelAppointment.date}/${cancelAppointment.time}`,
-    cancelAppointment.cancelToken,
+    JSON.stringify(cancelAppointment.cancelToken),
   )
 }
