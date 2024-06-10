@@ -8,6 +8,7 @@ export type Appointment = {
   service: string
   price: string
   observations: string
+  cancelToken: string
 }
 export type AppointmentDto = {
   name: string
@@ -17,4 +18,11 @@ export type AppointmentDto = {
   service: string
   price: string
   observations: string
+  cancelToken: string
+}
+
+export type CancelAppointmentDto = {
+  date: string
+  time: string
+  cancelToken: string
 }
