@@ -18,9 +18,14 @@ import { AppointmentDto } from '@/utils/types'
 import { useCreateAppointment } from '@/queries'
 import { sendMessage } from '@/utils/sendMessage'
 import { handlePhoneInput } from '@/lib/utils'
+import { generateCancelToken } from '@/utils/generateCancelToken'
 
 const AppointmentSchema = z.object({
-  name: z.string().min(2, 'Nome muito curto').max(50, 'Nome muito longo'),
+  name: z
+    .string()
+    .min(2, 'Nome muito curto')
+    .max(50, 'Nome muito longo')
+    .transform((name) => name.trim()),
   phone: z.string().min(14, 'Telefone inválido').max(14, 'Telefone inválido'),
   observations: z.string().max(150),
 })
@@ -46,6 +51,8 @@ const AppointmentForm: React.FC = () => {
   const createAppointment = useCreateAppointment()
 
   const onSubmit = (data: AppointmentFormValues) => {
+    const cancelToken = generateCancelToken()
+
     if (data.name && data.phone && service && price && formattedDate && hour) {
       const appointmentdto: AppointmentDto = {
         name: data.name,
@@ -55,6 +62,7 @@ const AppointmentForm: React.FC = () => {
         service: service,
         price: price,
         observations: data.observations,
+        cancelToken: cancelToken,
       }
       createAppointment.mutate(appointmentdto, {
         onSuccess: () => {
