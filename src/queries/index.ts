@@ -1,7 +1,11 @@
 import { skipToken, useMutation, useQuery } from '@tanstack/react-query'
 
-import { createAppointment, findAppointmentByDate } from '../services/api'
-import { AppointmentDto } from '../utils/types'
+import {
+  cancelAppointment,
+  createAppointment,
+  findAppointmentByDate,
+} from '../services/api'
+import { AppointmentDto, CancelAppointmentDto } from '../utils/types'
 
 export function useFindAppointmentsByDate(date: string | undefined) {
   return useQuery({
@@ -12,8 +16,16 @@ export function useFindAppointmentsByDate(date: string | undefined) {
 
 export function useCreateAppointment() {
   return useMutation({
-    mutationFn: (appointment: AppointmentDto) => {
-      return createAppointment(appointment)
+    mutationFn: (appointmentDto: AppointmentDto) => {
+      return createAppointment(appointmentDto)
+    },
+  })
+}
+
+export function useCancelAppointment() {
+  return useMutation({
+    mutationFn: (cancelAppointmentdto: CancelAppointmentDto) => {
+      return cancelAppointment(cancelAppointmentdto)
     },
   })
 }
