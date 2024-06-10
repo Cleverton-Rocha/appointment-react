@@ -18,9 +18,10 @@ export const sendMessage = (appointment: AppointmentDto) => {
 Obrigado pela preferencia!%0D
 Espero que sua experiência seja incrível.%0D
 =-=-=-=-=-=-=-=-=-=-=-=-=-==-=%0D
-Caso deseje cancelar o agendamento:%0D
-TOKEN DE CANCELAMENTO:${appointment.cancelToken}%0D
-❌ https://adriastefannydesign.vercel.app/cancelar-agendamento/${appointment.appointmentDate}/${appointment.appointmentTime}%0D
+*CANCELAR AGENDAMENTO*%0D
+Token de cancelamento 👇%0D 
+${appointment.cancelToken}%0D
+❌ https://adriastefannydesign.vercel.app/cancelar-agendamento/${appointment.appointmentDate}/${appointment.appointmentTime} ❌%0D
 =-=-=-=-=-=-=-=-=-=-=-=-=-==-=%0D
 COMPROVANTE DE AGENDAMENTO`
   window.location.href = `${wppURL}${message}`
