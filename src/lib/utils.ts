@@ -17,3 +17,17 @@ export const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
   const phone = e.target
   phone.value = formatPhoneNumber(phone.value)
 }
+
+export const formatCancelToken = (token: string) => {
+  let value = token.replace(/[^a-zA-Z0-9]/g, '')
+  value = value.slice(0, 6)
+
+  return value
+}
+
+export const handleCancelTokenInput = (
+  e: React.ChangeEvent<HTMLInputElement>,
+) => {
+  const token = e.target
+  token.value = formatCancelToken(token.value)
+}
