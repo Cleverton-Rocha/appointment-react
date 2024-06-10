@@ -7,6 +7,7 @@ import App from './App.tsx'
 import './index.css'
 import queryClient from './services/queryClient.ts'
 import Home from './pages/home.tsx'
+import CancelAppointment from './pages/cancel-appointment.tsx'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/cancelar-agendamento/:date/:time',
+        element: <CancelAppointment />,
       },
     ],
   },
