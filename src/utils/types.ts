@@ -22,7 +22,5 @@ export type AppointmentDto = {
 }
 
 export type CancelAppointmentDto = {
-  date: string
-  time: string
   cancelToken: string
 }
