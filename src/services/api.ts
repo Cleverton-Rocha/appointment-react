@@ -26,8 +26,5 @@ export async function createAppointment(appointment: AppointmentDto) {
 export async function cancelAppointment(
   cancelAppointment: CancelAppointmentDto,
 ) {
-  await api.post(
-    `/appointments/${cancelAppointment.date}/${cancelAppointment.time}`,
-    JSON.stringify(cancelAppointment.cancelToken),
-  )
+  await api.delete(`/appointments/${cancelAppointment.cancelToken}`)
 }
