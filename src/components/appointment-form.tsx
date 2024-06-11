@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 
 import DatePicker from './date-picker'
 import SelectHour from './select-hour'
@@ -66,7 +67,11 @@ const AppointmentForm: React.FC = () => {
       }
       createAppointment.mutate(appointmentdto, {
         onSuccess: () => {
+          toast.success('Horário agendado com sucesso!')
           sendMessage(appointmentdto)
+        },
+        onError: () => {
+          toast.error('Erro ao agendar horário')
         },
       })
     }
