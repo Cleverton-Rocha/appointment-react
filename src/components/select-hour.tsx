@@ -1,4 +1,4 @@
-import { isToday } from 'date-fns'
+import { format, isToday, parse } from 'date-fns'
 import { Clock } from 'lucide-react'
 import { useEffect } from 'react'
 
@@ -19,15 +19,21 @@ const SelectHour = () => {
   const hour = useHourStore((state) => state.hour)
 
   const formattedDate = useDateStore((state) => state.formattedDate)
-  const isDateToday = formattedDate && isToday(new Date(formattedDate))
-  const currentHour = new Date().getHours()
 
   const { data } = useFindAppointmentsByDate(formattedDate)
   const AlreadyBookedHours = data?.map(({ appointmentTime }) => appointmentTime)
 
-  const shouldDisableHour = (hour: string) =>
-    (isDateToday && parseInt(hour) < currentHour) ||
-    AlreadyBookedHours?.includes(hour)
+  const shouldDisableHour = (hour: string) => {
+    const isDateToday =
+      formattedDate && isToday(parse(formattedDate, 'dd-MM-yyyy', new Date()))
+    const currentHour = parseInt(format(new Date(), 'HHmm'))
+    const hourToNumber = parseInt(hour.replace(':', ''))
+
+    return (
+      (isDateToday && hourToNumber < currentHour) ||
+      AlreadyBookedHours?.includes(hour)
+    )
+  }
 
   useEffect(() => {
     setHour('')
