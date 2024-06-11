@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { useParams } from 'react-router-dom'
 
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
@@ -27,17 +26,11 @@ const CancelAppointment = () => {
 
   const cancelAppointment = useCancelAppointment()
 
-  const { date, time } = useParams()
-
   const onSubmit = (data: CancelAppointmentValues) => {
-    if (date && time) {
-      const cancelAppointmentDto = {
-        date: date,
-        time: time,
-        cancelToken: data.cancelToken,
-      }
-      cancelAppointment.mutate(cancelAppointmentDto)
+    const cancelAppointmentDto = {
+      cancelToken: data.cancelToken,
     }
+    cancelAppointment.mutate(cancelAppointmentDto)
   }
 
   return (
