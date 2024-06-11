@@ -2,6 +2,8 @@ import { format, isToday, parse } from 'date-fns'
 import { Clock } from 'lucide-react'
 import { useEffect } from 'react'
 
+import LoadingSpinner from './loading-spinner'
+
 import { hours } from '@/utils/hours'
 import {
   Select,
@@ -20,7 +22,7 @@ const SelectHour = () => {
 
   const formattedDate = useDateStore((state) => state.formattedDate)
 
-  const { data } = useFindAppointmentsByDate(formattedDate)
+  const { data, isLoading } = useFindAppointmentsByDate(formattedDate)
   const AlreadyBookedHours = data?.map(({ appointmentTime }) => appointmentTime)
 
   const shouldDisableHour = (hour: string) => {
@@ -38,6 +40,8 @@ const SelectHour = () => {
   useEffect(() => {
     setHour('')
   }, [formattedDate, setHour])
+
+  if (isLoading) return <LoadingSpinner />
 
   return (
     <Select value={hour} onValueChange={setHour}>
