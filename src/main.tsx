@@ -18,7 +18,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/cancelar-agendamento/:date/:time',
+        path: '/cancelar-agendamento',
         element: <CancelAppointment />,
       },
     ],
