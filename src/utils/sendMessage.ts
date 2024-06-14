@@ -21,7 +21,7 @@ Espero que sua experiência seja incrível.%0D
 *CANCELAR AGENDAMENTO*%0D
 Token de cancelamento 👇%0D 
 *${appointment.cancelToken}*%0D
-❌ https://adriastefannydesign.vercel.app/cancelar-agendamento/${appointment.appointmentDate}/${appointment.appointmentTime} ❌%0D
+❌ https://adriastefannydesign.vercel.app/cancelar-agendamento ❌%0D
 =-=-=-=-=-=-=-=-=-=-=-=-=-==-=%0D
 COMPROVANTE DE AGENDAMENTO`
   window.location.href = `${wppURL}${message}`
