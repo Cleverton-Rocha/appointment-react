@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import toast from 'react-hot-toast'
 
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
@@ -30,7 +31,14 @@ const CancelAppointment = () => {
     const cancelAppointmentDto = {
       cancelToken: data.cancelToken,
     }
-    cancelAppointment.mutate(cancelAppointmentDto)
+    cancelAppointment.mutate(cancelAppointmentDto, {
+      onSuccess: () => {
+        toast.success('Agendamento cancelado com sucesso!')
+        setTimeout(() => {
+          window.location.href = '/'
+        }, 1000)
+      },
+    })
   }
 
   return (
