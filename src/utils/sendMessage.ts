@@ -1,6 +1,6 @@
 import { AppointmentDto } from './types'
 
-export const sendMessage = (appointment: AppointmentDto) => {
+export const sendCreateAppointmentMessage = (appointment: AppointmentDto) => {
   const wppURL = import.meta.env.VITE_REACT_APP_API_URL
   const message = `
 📅 MEU AGENDAMENTO%0D
@@ -24,5 +24,14 @@ Token de cancelamento 👇%0D
 ❌ https://adriastefannydesign.vercel.app/cancelar-agendamento ❌%0D
 =-=-=-=-=-=-=-=-=-=-=-=-=-==-=%0D
 COMPROVANTE DE AGENDAMENTO`
+  window.location.href = `${wppURL}${message}`
+}
+
+export const sendCancelAppointmentMessage = () => {
+  const wppURL = import.meta.env.VITE_REACT_APP_API_URL
+  const message = `
+❌ CANCELAR AGENDAMENTO ❌%0D
+Olá, passando para avisar que decidi cancelar meu agendamento.%0D
+`
   window.location.href = `${wppURL}${message}`
 }
