@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import AppointmentFormHeader from '@/components/appointment-form-header'
 import { handleCancelTokenInput } from '@/lib/utils'
 import { useCancelAppointment } from '@/queries'
+import { sendCancelAppointmentMessage } from '@/utils/sendMessage'
 
 const cancelAppointmentSchema = z.object({
   cancelToken: z.string().min(6, { message: 'O token contém 6 caracteres.' }),
@@ -34,9 +35,7 @@ const CancelAppointment = () => {
     cancelAppointment.mutate(cancelAppointmentDto, {
       onSuccess: () => {
         toast.success('Agendamento cancelado com sucesso!')
-        setTimeout(() => {
-          window.location.href = '/'
-        }, 1000)
+        sendCancelAppointmentMessage()
       },
     })
   }
