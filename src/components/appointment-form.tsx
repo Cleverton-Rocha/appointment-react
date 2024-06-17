@@ -17,7 +17,7 @@ import { usePriceStore } from '@/store/priceStore'
 import { useServiceStore } from '@/store/serviceStore'
 import { AppointmentDto } from '@/utils/types'
 import { useCreateAppointment } from '@/queries'
-import { sendMessage } from '@/utils/sendMessage'
+import { sendCreateAppointmentMessage } from '@/utils/sendMessage'
 import { handlePhoneInput } from '@/lib/utils'
 import { generateCancelToken } from '@/utils/generateCancelToken'
 
@@ -68,7 +68,7 @@ const AppointmentForm: React.FC = () => {
       createAppointment.mutate(appointmentdto, {
         onSuccess: () => {
           toast.success('Horário agendado com sucesso!')
-          sendMessage(appointmentdto)
+          sendCreateAppointmentMessage(appointmentdto)
         },
         onError: () => {
           toast.error('Erro ao agendar horário')
